@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+body{
+  background-color: aqua;
+}
+
+input{
+  width: 100px;
+  height: 30px;
+}
+
+#inc{
+    height: 50px;
+    width: 60px;
+    margin-bottom: 500px;
+    background-color: orange;
+}
+
+#dec{
+    height: 50px;
+    width: 60px;
+    background-color: orange;
+}
+
+#img {
+    margin-left: 400px;
+    margin-right: 400px;
+    padding: 0%;
+    height: 400px;
+    width: 500px;
+}
+</style>
+</head>
+<body>
+  <h1 align="center">Car Mart</h1>
+  <br><br>
+  
+  <div align="center">
+    <input id="demoInput" type="number" min="1" max="4">
+    <br>
+    <div align="center">
+      <button id="inc" onclick="increment()">+</button>
+      <video id="img" src="car video.mp4" type="video/mp4"></video>
+      <button id="dec" onclick="decrement()">-</button>
+    </div>
+  </div>
+  
+  <script>
+    var video = document.getElementById('img');
+    var reverseInterval;
+  
+    function increment() {
+      var demoInput = document.getElementById('demoInput');
+      demoInput.stepUp();
+  
+      video.play();
+      setTimeout(function() {
+        video.pause();
+      }, 3000);
+    }
+  
+    function decrement() {
+      var demoInput = document.getElementById('demoInput');
+      demoInput.stepDown();
+  
+      video.currentTime = video.currentTime - 3;
+      video.play();
+  
+      clearInterval(reverseInterval);
+      reverseInterval = setInterval(function() {
+        if (video.currentTime > 0) {
+          video.currentTime -= 1;
+        } else {
+          clearInterval(reverseInterval);
+          
+          video.pause();
+        }
+      }, 3000); 
+    }
+  </script>
+</body>
+</html>
